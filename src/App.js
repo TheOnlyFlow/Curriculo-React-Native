@@ -1,12 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Alert, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'
 
 import foto from './Assets/foto.jpg'
+import Card from './components/Card/Index'
 
 
 
 const App = () => {
+
+  function handlesocialmedia(rede_social) {
+
+    switch (rede_social) {
+
+      case 'github':
+        Alert.alert('Meu Github', 'https://github.com/TheOnlyFlow')
+
+        break
+
+      case 'linkedin':
+        Alert.alert('Meu Linkedin', 'https://www.linkedin.com/in/guilherme-correa-63a350138/')
+
+
+
+        break
+    }
+
+  }
+
   return (
     <>
       <View style={style.page}>
@@ -15,26 +36,21 @@ const App = () => {
           <Text style={style.nome}>Guilherme Correa</Text>
           <Text style={style.funcao}>Desenvolvedor Front-end</Text>
           <View style={style.redes_sociais}>
-            <Icon name='github' size={30} />
-            <Icon name='linkedin' size={30} />
+            <TouchableOpacity onPress={() => handlesocialmedia('github')}>
+              <Icon name='github' size={30} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlesocialmedia('linkedin')}>
+              <Icon name='linkedin' size={30} />
+            </TouchableOpacity>
 
 
           </View>
         </View>
 
-        <View style={style.card_container}>
-          <View style={style.card}>
-            <View style={style.card_header}>
-              <Text>Experiência Profissional</Text>
-            </View>
+        < Card title='Formação Acadêmica' />
+        < Card title='Experiência Profissional' />
 
-            <View style={style.card_content}>
-              <Text style={style.card_content_text}>Experiência Profissional</Text>
-              <Text style={style.card_content_text}>Experiência Profissional</Text>
-              <Text style={style.card_content_text}>Experiência Profissional</Text>
-            </View>
-          </View>
-        </View>
+
 
       </View>
     </>
@@ -75,32 +91,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     width: '40%',
     marginTop: 20
-  },
-  card_container: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20
-
-  },
-  card: {
-    width: '60%',
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#939393',
-    padding: 10,
-    backgroundColor: '#fff'
-
-
-  },
-  card_content:{
-    marginTop:10
-
-  },
-  card_content_text:{
-    color:'#939393',
-    padding:10
   }
+
 
 })
 
