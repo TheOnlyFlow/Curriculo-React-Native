@@ -1,65 +1,69 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text, Alert, TouchableOpacity, Linking, ScrollView, SafeAreaView, } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'
 
 import foto from './Assets/foto.jpg'
 import Card from './components/Card/Index'
+import Projs from './components/Projetos'
+
+
+
+
 
 
 
 const App = () => {
 
-  function handlesocialmedia(rede_social) {
-
-    switch (rede_social) {
-
-      case 'github':
-        Alert.alert('Meu Github', 'https://github.com/TheOnlyFlow')
-
-        break
-
-      case 'linkedin':
-        Alert.alert('Meu Linkedin', 'https://www.linkedin.com/in/guilherme-correa-63a350138/')
 
 
-
-        break
-    }
-
-  }
 
   return (
     <>
-      <View style={style.page}>
-        <View style={style.container_cabecalho}>
-          <Image source={foto} style={style.foto} />
-          <Text style={style.nome}>Guilherme Correa</Text>
-          <Text style={style.funcao}>Desenvolvedor Front-end</Text>
-          <View style={style.redes_sociais}>
-            <TouchableOpacity onPress={() => handlesocialmedia('github')}>
-              <Icon name='github' size={30} />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handlesocialmedia('linkedin')}>
-              <Icon name='linkedin' size={30} />
-            </TouchableOpacity>
+      <SafeAreaView style={style.container}>
+        <ScrollView style={style.scrollView}>
+          <View style={style.container_cabecalho}>
+            <Image source={foto} style={style.foto} />
+            <Text style={style.nome}>Guilherme Correa</Text>
+            <Text style={style.funcao}>Desenvolvedor Front-end</Text>
+            <View style={style.redes_sociais}>
+              <TouchableOpacity onPress={() => Linking.openURL('https://github.com/TheOnlyFlow')}>
+                <Icon color='#f2cc8f'  name='github' size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => Linking.openURL('https://www.linkedin.com/in/guilherme-correa-63a350138/')}>
+                <Icon color='#f2cc8f' name='linkedin' size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => Linking.openURL('mailto:guilherme.vit.correa@gmail.com')}>
+                <Icon color='#f2cc8f' name='mail' size={30} />
+              </TouchableOpacity>
 
 
+            </View>
           </View>
-        </View>
 
-        < Card title='Formação Acadêmica' />
-        < Card title='Experiência Profissional' />
+          < Card title='Formação Acadêmica / Técnica'/>
+
+          <Projs card_content='asdiuasghduiasgdiusag' title='Experiência / Projetos' />
 
 
 
-      </View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 };
 
 const style = StyleSheet.create({
+
+  container: {
+    flex: 1,
+
+  },
+  scrollView: {
+    backgroundColor: '#3d405b',
+
+  },
   page: {
-    backgroundColor: '#E7E7E7',
+    backgroundColor: '#F5D3A9',
     flex: 1,
 
   },
@@ -79,18 +83,22 @@ const style = StyleSheet.create({
   nome: {
     fontSize: 26,
     fontWeight: 'bold',
-    marginTop: 10
+    marginTop: 10,
+    color: '#81b29a'
   },
   funcao: {
 
-    color: '#939393',
+    color: '#e07a5f',
     marginBottom: 10
   },
   redes_sociais: {
+
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '40%',
-    marginTop: 20
+    width: '50%',
+    marginTop: 20,
+
+
   }
 
 
